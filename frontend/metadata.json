@@ -1,0 +1,6 @@
+{
+  "name": "WattTwin AI – Industrial Digital Twin & Energy Optimization",
+  "description": "Simulation-first industrial digital twin platform for manufacturing energy optimization, OT cybersecurity validation, and agentic orchestration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
