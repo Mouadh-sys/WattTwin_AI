@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-30",
+  "note": "Pins for the Phase 0 feasibility gate. Never auto-track main/latest in experiments.",
+  "simulator": {
+    "name": "Open Industry Project",
+    "repository": "https://github.com/Open-Industry-Project/Open-Industry-Project",
+    "license": "MIT",
+    "commit": "dcebf5312c3c6d8aa141bb5786bb58545f3c1675",
+    "commit_date": "2026-10-29T17:31:15-04:00",
+    "node_requirement": ">=24",
+    "verified_node": "24.14.0",
+    "verification": "headless test-project runner, see docs/integration/simulator-feasibility.md"
+  },
+  "openplc": {
+    "image": "ghcr.io/autonomy-logic/openplc-runtime:latest",
+    "image_tag_digest": "sha256:2ca9fc611f25c3ad0471b996a4bf27507ac112612292426ca6d5ca4bf06e97e6",
+    "image_id": "sha256:18600e306a31",
+    "reported_version": "v4.3.1",
+    "editor_repository": "https://github.com/Autonomy-Logic/openplc-editor",
+    "editor_commit_verified": "13fee913d66fb4d93f7528c3359144819da1c275",
+    "strucpp_version_verified": "v0.6.7",
+    "container_network_mode_verified": "host (a published-port container cannot reach a host loopback Modbus server)",
+    "note": "The 'latest' tag is not a pin. Tag/digest must be replaced with an immutable reference before evaluation runs."
+  },
+  "platform": {
+    "os": "Pop!_OS 24.04 LTS",
+    "kernel": "Linux",
+    "python": "3.12.3",
+    "docker": "29.1.3"
+  }
+}
