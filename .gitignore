@@ -1,0 +1,43 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# --- Node / frontend ---
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+
+# --- Environment & secrets ---
+.env
+.env.*
+!.env.example
+
+# --- IDE ---
+.idea/
+.vscode/
+*.iml
+
+# --- Runtime artefacts ---
+data/
+logs/
+artifacts/
+runs/
+*.sqlite3
+*.db
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Local simulator checkouts (vendored, pinned elsewhere) ---
+vendor/open-industry-project/

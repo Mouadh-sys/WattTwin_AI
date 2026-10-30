@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: watttwin-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-watttwin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-watttwin_dev_only}
+      POSTGRES_DB: ${POSTGRES_DB:-watttwin}
+    ports:
+      # Host 5433: a local PostgreSQL commonly owns 5432 on developer machines.
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - watttwin-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    profiles: ["app"]
+    build:
+      context: ./backend
+    container_name: watttwin-backend
+    environment:
+      WATTTWIN_ENV: development
+      WATTTWIN_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-watttwin}:${POSTGRES_PASSWORD:-watttwin_dev_only}@postgres:5432/${POSTGRES_DB:-watttwin}
+      WATTTWIN_SIM_MODBUS_HOST: host.docker.internal
+      WATTTWIN_SIM_MODBUS_PORT: 5020
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+volumes:
+  watttwin-pgdata:
